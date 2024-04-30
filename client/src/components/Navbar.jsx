@@ -7,6 +7,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { connect, address } = useStateContext();
 
+  const handleConnectWallet = async () => {
+    try {
+      await connect();
+    } catch (error) {
+      console.log('Error connecting wallet:', error);
+    }
+  };
+
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
       <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
@@ -19,14 +27,7 @@ const Navbar = () => {
           btnType="button"
           title={address ? 'Connected' : 'Connect Wallet'}
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
-          handleClick={() => {
-            if (!address) {
-              connect();
-            } else {
-              // Handle wallet already connected case
-              console.log('Wallet is already connected');
-            }
-          }}
+          handleClick={handleConnectWallet}
         />
       </div>
 

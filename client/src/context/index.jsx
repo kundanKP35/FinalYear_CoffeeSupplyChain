@@ -8,7 +8,6 @@ const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
   const { contract } = useContract('0xf137adF7f43EF19CBE12DC0CB1003bC07FAFbD2c');
-  const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
   const address = useAddress();
   const connect = useMetamask();
@@ -23,12 +22,25 @@ export const StateContextProvider = ({ children }) => {
         }
     } 
 
+    // Farmer Roles
+    const addNewFarmer = async (id) => {
+        try {
+            const result = await contract.call('addFarmer',[id]);
+            console.log("contract call success",result)
+            return result;
+        } catch (error) {
+            console.log("contract call failure",error) 
+        }
+    }
+
     return (
         <StateContext.Provider
           value={{ 
             address,
             contract,
-            getCoffeeDetail1
+            connect,
+            getCoffeeDetail1,
+            addNewFarmer
           }}
         >
           {children}
