@@ -1,5 +1,9 @@
-import React,{useState} from 'react';
-import { useStateContext } from '../context';
+import React, { useState } from 'react';
+import {useStateContext} from '../context';
+import HarvestItem from '../components/Farmer/HarvestItem';
+import ProcessItem from '../components/Farmer/ProcessItem';
+import PackItem from '../components/Farmer/PackItem';
+import SellItem from '../components/Farmer/SellItem';
 
 const Farmer = () => {
     const [newFarmerId, setNewFarmerId] = useState('');
@@ -32,7 +36,7 @@ const Farmer = () => {
     return (
         <div>
             <div>
-                <h1>Add Farmer</h1>
+                <h3>Add Farmer</h3>
                 <form onSubmit={handleAddFarmer} className="w-full mt-[65px] flex flex-col gap-[30px]">
                     <label htmlFor="newFarmerIdInput">Enter New Farmer ID:</label>
                     <input type="text" id="newFarmerIdInput" name="newFarmerIdInput" required value={newFarmerId} onChange={handleFormFieldChange} />
@@ -41,6 +45,16 @@ const Farmer = () => {
                 {isLoading && <p>Loading...</p>}
                 {addFarmerResult && <p>{addFarmerResult}</p>}
                 {error && <p>Error: {error}</p>}
+            </div>
+
+            <div>
+                <h3>Farmer roles..</h3>
+                <div>
+                    <HarvestItem />
+                    <ProcessItem />
+                    <PackItem />
+                    <SellItem />
+                </div>
             </div>
         </div>
     )

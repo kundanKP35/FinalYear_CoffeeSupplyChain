@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../context';
 
-const CoffeeDetails = () => {
+const CoffeeDetails1 = () => {
   const [upc, setUpc] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [coffeeDetails, setCoffeeDetails] = useState(null);
@@ -51,4 +51,4 @@ const CoffeeDetails = () => {
   );
 };
 
-export default CoffeeDetails;
+export default CoffeeDetails1;
