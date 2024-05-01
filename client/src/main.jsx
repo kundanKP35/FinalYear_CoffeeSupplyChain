@@ -5,6 +5,7 @@ import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 import App from './App';
 import { Sepolia } from "@thirdweb-dev/chains";
 import { StateContextProvider } from './context';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

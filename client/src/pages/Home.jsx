@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../context';
-import CoffeeDetails from '../components/CoffeeDetails';
+import CoffeeDetails1 from '../components/CoffeeDetails1';
 
 const Home = () => {
 
   return (
     <div>
       <h1>Home</h1>
-      <CoffeeDetails />
+      <CoffeeDetails1 />
     </div>
   );
 };
