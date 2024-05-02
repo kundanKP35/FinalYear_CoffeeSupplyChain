@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../../context';
 
-const HarvestItem = () => {
+const HarvestItem = ({closeModal,actionText}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -35,15 +35,18 @@ const HarvestItem = () => {
         try {
             await harvestCoffee(formValues);
             setSuccessMessage('Coffee details added successfully');
+            actionText()
         } catch (error) {
             console.error('Error adding coffee details:', error);
             setErrorMessage('Error adding coffee details');
         } finally {
             setIsLoading(false);
+            closeModal()
         }
     };
 
     return (
+        <>
         <div>
             <h4>Harvest Item</h4>
             <form onSubmit={handleSubmit} className="w-full mt-[65px] flex flex-col gap-[30px]">
@@ -68,12 +71,29 @@ const HarvestItem = () => {
                 <label htmlFor="productNotesInput">Product Notes:</label>
                 <input type="text" id="productNotesInput" name="productNotes" required value={formValues.productNotes} onChange={handleFormFieldChange} />
 
-                <button type="submit">Add Coffee</button>
+                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+        >
+          Confirm
+        </button>
+        <button
+          type="button"
+          onClick={closeModal}
+          className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+        >
+          Cancel
+        </button>
+      </div>
             </form>
             {isLoading && <p>Loading...</p>}
             {successMessage && <p>{successMessage}</p>}
             {errorMessage && <p>Error: {errorMessage}</p>}
         </div>
+        
+      </>
     )
 }
 
