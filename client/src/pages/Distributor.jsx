@@ -21,7 +21,7 @@ const Distributor = () => {
     setError(null);
 
     try {
-      const result = await addNewDistributor(newDistributorId);
+      await addNewDistributor(newDistributorId);
       setAddDistributorResult("Distributor added successfully");
     } catch (error) {
       console.error("Error adding distributor:", error);

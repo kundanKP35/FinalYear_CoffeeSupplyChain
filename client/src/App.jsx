@@ -6,6 +6,7 @@ import Farmer from './pages/Farmer';
 import Distributor from './pages/Distributor';
 import Retailer from './pages/Retailer';
 import Consumer from './pages/Consumer';
+import Test from './components/Test';
 
 import "./App.css";
 
@@ -21,6 +22,7 @@ const App = () => {
                     <Route path="/distributor" element={<Distributor />} />
                     <Route path="/retailer" element={<Retailer />} />
                     <Route path="/consumer" element={<Consumer />} />
+                    <Route path="/test" element={<Test />} />
                 </Routes>
             </div>
         </div>

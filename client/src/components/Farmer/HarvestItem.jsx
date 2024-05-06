@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../../context';
 
-const HarvestItem = ({closeModal,actionText}) => {
+const HarvestItem = ({closeModal}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -35,7 +35,6 @@ const HarvestItem = ({closeModal,actionText}) => {
         try {
             await harvestCoffee(formValues);
             setSuccessMessage('Coffee details added successfully');
-            actionText()
         } catch (error) {
             console.error('Error adding coffee details:', error);
             setErrorMessage('Error adding coffee details');
