@@ -1,60 +1,41 @@
-import React, { useState } from "react";
-import { useStateContext } from "../../context";
+import React, { useState } from 'react';
+import { useStateContext } from '../../context';
 
-const PackItem = ({ closeModal }) => {
-  const [upc, setUpc] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+const ShipItem = ({ closeModal }) => {
+  const [upc, setUpc] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const { packCoffee } = useStateContext();
-
-  const handleInputChange = (e) => {
-    setUpc(e.target.value);
-  };
+  const { receiveCoffee } = useStateContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setSuccessMessage("");
-    setErrorMessage("");
+    await receiveCoffee(upc, setSuccessMessage);
 
-    try {
-      await packCoffee(upc);
-      setSuccessMessage(`Item with UPC ${upc} packed successfully`);
-    } catch (error) {
-      console.error("Error packing item:", error);
-      setErrorMessage("Error packing item");
-    } finally {
-      setIsLoading(false);
-    }
+    setUpc('');
   };
 
   return (
     <div className="w-full">
       <h1 className="text-3xl font-bold border-b-4 border-yellow-500 rounded-b">
-        Pack Item Form
+      Receive Item
       </h1>
+      {successMessage && <p>{successMessage}</p>}
       <form
         onSubmit={handleSubmit}
         className="w-full mt-[20px] flex flex-col gap-[20px] form_modal"
       >
-        <label htmlFor="upc">UPC:</label>
-        <input
-          type="text"
-          id="upc"
-          name="upc"
-          value={upc}
-          onChange={handleInputChange}
-        />
-
+        <label>
+          Upc:
+          <input type="text" value={upc} onChange={(e) => setUpc(e.target.value)} />
+        </label>
+       
         <div className="py-3 sm:flex sm:flex-row-reverse">
           <button
             type="button"
             onClick={handleSubmit}
             className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
           >
-            {isLoading ? 'Packing...' : 'Confirm'}
+           Receive Item
           </button>
           <button
             type="button"
@@ -65,11 +46,8 @@ const PackItem = ({ closeModal }) => {
           </button>
         </div>
       </form>
-
-      {successMessage && <p>{successMessage}</p>}
-      {errorMessage && <p>Error: {errorMessage}</p>}
     </div>
   );
 };
 
-export default PackItem;
+export default ShipItem;
