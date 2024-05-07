@@ -34,7 +34,7 @@ const Navbar = () => {
             </div>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
             <a
-              href="tel:5541251234"
+              onClick={()=> navigate('/about')}
               className="text-sm text-gray-500 dark:text-white hover:underline"
             >
               About Us

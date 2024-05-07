@@ -59,3 +59,10 @@
 
   }
 }
+
+.pipelist li:not(:last-child)::after {
+  content: "|";
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+

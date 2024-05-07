@@ -11,15 +11,12 @@ const Footer = ({role}) => {
             {/* <img src={logo} className="h-8" alt="Flowbite Logo" /> */}
             <span className="self-center text-2xl font-semibold whitespace-nowrap">Ace Coffee Suppliers</span>
           </div>
-          <ul className="flex flex-wrap justify-between items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
+          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
             <li>
-              <a href="#" className="hover:underline me-4 md:me-6">Github</a>
+              <a href="https://github.com/kundanKP35/FinalYear_CoffeeSupplyChain" target="__blank" className="hover:underline me-4 md:me-6">Github</a>
             </li>
             <li>
-              <a href="#" className="hover:underline me-4 md:me-6">About</a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">Contact</a>
+              <a href="/about" target="__blank" className="hover:underline me-4 md:me-6">About Us</a>
             </li>
           </ul>
         </div>
