@@ -1,18 +1,18 @@
 import React from 'react'
-import BuyItem from './Distributor/BuyItem'
+import PurchaseItem from './Distributor/PurchaseItem'
 import DistributorItems from './Distributor/DistributorItems'
 import ShipItem from './Distributor/ShipItem'
 import RetailerItems from './Retailer/RetailerItems'
 import ReceiveItems from './Retailer/ReceiveItems'
 import ConsumerItems from './Consumer/ConsumerItems'
-import PurchaseItem from './Consumer/PurchaseItems'
+import BuyItem from './Consumer/BuyItem'
 
 const Test = () => {
   return (
     <div className='text-red-500'>
         <div className='border-[1px]'>
             <h1>Distributor...</h1>
-            <BuyItem />
+            <PurchaseItem />
             <DistributorItems />
             <ShipItem />
         </div>
@@ -24,7 +24,8 @@ const Test = () => {
         <div className='mt-6 border-[1px]'>
             <h1>Consumer...</h1>
             <ConsumerItems />
-            <PurchaseItem />
+            <BuyItem />
+
         </div>
     </div>
   )

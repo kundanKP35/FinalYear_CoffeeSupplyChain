@@ -40,3 +40,22 @@
 .read-the-docs {
   color: #888;
 }
+
+.form_modal{
+  color:red;
+  label{
+    color:white;
+    display: block;
+    font-weight: bold;
+  }
+  input, textarea{
+    display: block;
+    width: 100%;
+    color: black;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    padding: 5px 10px;
+    background-color: #fffcdc;
+
+  }
+}

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { useTable } from 'react-table';
-import Modal from '../components/HarvestFarmerModal';
+import Modal from './Modal'
 
 const data = [
   { action: 'Harvesting fresh beans', actionBy: 'Farmer', actionOn: 'Coffee', actionBtn: 'Harvest'},
   { action: 'Processing of beans', actionBy: 'Farmer', actionOn: 'Coffee', actionBtn: 'Process'},
   { action: 'Unit Packaging', actionBy: 'Farmer', actionOn: 'Coffee', actionBtn: 'Pack'},
-  { action: 'Sell to distributer', actionBy: 'Farmer', actionOn: 'Distributor', actionBtn: 'Sell' }
+  { action: 'List for Sale', actionBy: 'Farmer', actionOn: 'Distributor', actionBtn: "List" }
 ];
 
 const columns = [

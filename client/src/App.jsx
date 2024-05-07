@@ -7,13 +7,14 @@ import Distributor from './pages/Distributor';
 import Retailer from './pages/Retailer';
 import Consumer from './pages/Consumer';
 import Test from './components/Test';
+import bg from './assets/bg.jpg'
 
 import "./App.css";
 
 
 const App = () => {
     return (
-        <div className="relative sm:-8 bg-[#13131a] min-h-screen flex flex-row">
+        <div className="relative sm:-8 min-h-screen flex flex-row bg-cover bg-center" style={{ backgroundImage: `url(${bg})` }}>
             <div className="flex-1 max-sm:w-full max-w-full mx-auto sm:pr-5">
                 <Navbar />
                 <Routes>

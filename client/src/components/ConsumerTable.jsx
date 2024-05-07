@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useTable } from 'react-table';
+import Modal from './Modal'
 
 const data = [
-  { action: 'Buy an unit', actionBy: 'Consumer', actionOn: 'Unit', actionBtn: 'Buy'},
-  { action: 'Fetch unit details', actionBy: 'Consumer', actionOn: 'Unit', actionBtn: 'Fetch'},
+  { action: 'Fetch available Coffee for sale', actionBy: 'Consumer', actionOn: 'Unit', actionBtn: 'Fetch List'},
+  { action: 'Purchase an unit', actionBy: 'Consumer', actionOn: 'Unit', actionBtn: 'Purchase'},
 
 ];
 
@@ -15,7 +16,7 @@ const columns = [
     Header: 'Action Button',
     accessor: 'actionBtn',
     Cell: ({ row }) => (
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-32">
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-32" onClick={() => openModal(row.values.actionBtn)}>
         {row.values.actionBtn}
       </button>
     )
@@ -23,12 +24,25 @@ const columns = [
 ];
 
 const ConsumerList = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [actionText, setActionText] = useState('');
+
+  const openModal = (text) => {
+    console.log("opening modal")
+    setIsOpen(true);
+    setActionText(text);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
     data
   });
 
   return (
+    <>
     <table {...getTableProps()} className="table-auto w-full mb-24">
       <thead>
         {headerGroups.map(headerGroup => (
@@ -47,17 +61,32 @@ const ConsumerList = () => {
           return (
             <tr {...row.getRowProps()} className="border-b">
               {row.cells.map(cell => {
-                return (
-                  <td {...cell.getCellProps()} className="px-4 py-2">
-                    {cell.render('Cell')}
-                  </td>
-                );
+                if (cell.column.id === 'actionBtn') {
+                  return (
+                    <td {...cell.getCellProps()} className="px-4 py-2">
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-32"
+                        onClick={() => openModal(row.original.actionBtn)}
+                      >
+                        {row.original.actionBtn}
+                      </button>
+                    </td>
+                  );
+                } else {
+                  return (
+                    <td {...cell.getCellProps()} className="px-4 py-2">
+                      {cell.render('Cell')}
+                    </td>
+                  );
+                }
               })}
             </tr>
           );
         })}
       </tbody>
     </table>
+      <Modal isOpen={isOpen} closeModal={closeModal} actionText={actionText} />
+      </>
   );
 };
 
