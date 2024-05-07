@@ -12,7 +12,7 @@ export const StateContextProvider = ({ children }) => {
   const address = useAddress();
   const connect = useMetamask();
 
-  const getCoffeeDetail1 = async (upc) => {
+  const getCoffeeOriginDetail = async (upc) => {
         try {
             const coffeeDetail = await contract.call('fetchItemBufferOne',[upc]);
             console.log("contract call success",coffeeDetail)
@@ -22,7 +22,7 @@ export const StateContextProvider = ({ children }) => {
         }
     } 
 
-  const getCoffeeDetail2 = async (upc) => {
+  const getCoffeeChainDetail = async (upc) => {
         try {
             const coffeeDetail = await contract.call('fetchItemBufferTwo',[upc]);
             console.log("contract call success",coffeeDetail)
@@ -31,6 +31,7 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call failure",error) 
         }
     } 
+
 
     // Farmer Roles
     const addNewFarmer = async (id) => {
@@ -169,6 +170,16 @@ export const StateContextProvider = ({ children }) => {
     }
 
     // Consumer Roles
+    const addNewConsumer = async (id) => {
+        try {
+            const result = await contract.call('addConsumer',[id]);
+            console.log("contract call success",result)
+            return result;
+        } catch (error) {
+            console.log("contract call failure",error) 
+        }
+    }
+
     const getConsumerItems = async () => {
         try {
             const items = await contract.call('fetchAvailableForPurchaseItems', [], { from: address });
@@ -197,8 +208,8 @@ export const StateContextProvider = ({ children }) => {
             address,
             contract,
             connect,
-            getCoffeeDetail1,
-            getCoffeeDetail2,
+            getCoffeeOriginDetail,
+            getCoffeeChainDetail,
             addNewFarmer,
             harvestCoffee,
             processCoffee,
@@ -211,6 +222,7 @@ export const StateContextProvider = ({ children }) => {
             addNewRetailer,
             getRetailerItems,
             receiveCoffee,
+            addNewConsumer,
             getConsumerItems,
             purchaseCoffee
           }}

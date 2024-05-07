@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import { useStateContext } from "../context";
-import logo from '../assets/logo.svg';
+import logo2 from '../assets/logo2.png';
 
 
 const Navbar = () => {
@@ -22,15 +22,15 @@ const Navbar = () => {
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
 
-            <div className="flex gap-3" >
+            <div className="" >
             <img
-              src={logo}
+              src={logo2}
               alt="Logo"
-              className="w-16 h-16"
+              className="h-16 w-40"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Ace Coffee Suppliers
-            </span>
+            </span> */}
             </div>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
             <a
