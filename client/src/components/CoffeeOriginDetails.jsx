@@ -26,11 +26,14 @@ const CoffeeOriginDetails = () => {
   };
 
   return (
-    <div className='text-white'>
-      <form onSubmit={handleSubmit} className="w-full mt-[65px] flex flex-col gap-[30px]">
+    <div className='text-white w-5/12 rounded-md border border-gray-300 shadow-sm px-4 py-2'>
+      <h1 className="text-3xl font-bold mb-4">
+          Fetch Coffee Origin Details
+        </h1>
+      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[15px] form_modal">
         <label htmlFor="upcInput">Enter UPC:</label>
         <input type="text" id="upcInput" name="upcInput" required value={upc} onChange={handleFormFieldChange} />
-        <button type="submit">Submit</button>
+        <button type="submit" className=' w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-gray-900'>Submit</button>
       </form>
 
       {isLoading ? (
