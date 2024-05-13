@@ -20,12 +20,12 @@ const PackItem = ({ closeModal }) => {
     setErrorMessage("");
 
     try {
-      await packCoffee(upc);
-      setSuccessMessage(`Item with UPC ${upc} packed successfully`);
+      await packCoffee(upc, setSuccessMessage);
     } catch (error) {
       console.error("Error packing item:", error);
       setErrorMessage("Error packing item");
     } finally {
+      closeModal();
       setIsLoading(false);
     }
   };

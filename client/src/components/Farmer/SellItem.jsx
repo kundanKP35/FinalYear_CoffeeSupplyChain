@@ -28,12 +28,12 @@ const SellItem = ({ closeModal }) => {
     setErrorMessage("");
 
     try {
-      await sellCoffee(formValues);
-      setSuccessMessage("Coffee listed for sale successfully");
+      await sellCoffee(formValues, setSuccessMessage);
     } catch (error) {
       console.error("Error listing coffee for sale:", error);
       setErrorMessage("Error listing coffee for sale");
     } finally {
+      closeModal();
       setIsLoading(false);
     }
   };

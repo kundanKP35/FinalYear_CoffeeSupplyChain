@@ -20,12 +20,12 @@ const ProcessItem = ({ closeModal }) => {
     setErrorMessage("");
 
     try {
-      await processCoffee(upc);
-      setSuccessMessage(`Item with UPC ${upc} processed successfully`);
+      await processCoffee(upc, setSuccessMessage);
     } catch (error) {
       console.error("Error processing item:", error);
       setErrorMessage("Error processing item");
     } finally {
+      closeModal();
       setIsLoading(false);
     }
   };

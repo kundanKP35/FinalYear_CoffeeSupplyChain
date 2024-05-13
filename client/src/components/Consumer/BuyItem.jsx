@@ -4,12 +4,20 @@ import { useStateContext } from '../../context';
 const BuyItem = ({ closeModal }) => {
   const [upc, setUpc] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { purchaseCoffee } = useStateContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await purchaseCoffee(upc, setSuccessMessage);
+    
+    try {
+      await purchaseCoffee(upc, setSuccessMessage);
+    } catch (error) {
+      setErrorMessage('Error purchasing item');
+    } finally {
+      closeModal();
+    }
 
     setUpc('');
   };

@@ -4,12 +4,22 @@ import { useStateContext } from '../../context';
 const ShipItem = ({ closeModal }) => {
   const [upc, setUpc] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { shipCoffee } = useStateContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await shipCoffee(upc, setSuccessMessage);
+    setSuccessMessage("");
+    setErrorMessage("");
+    
+    try {
+      await shipCoffee(upc, setSuccessMessage);
+    } catch (error) {
+      setErrorMessage("Error shipping item");
+    }finally {
+      closeModal();
+    }
 
     setUpc('');
   };

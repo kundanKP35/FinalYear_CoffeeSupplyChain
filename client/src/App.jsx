@@ -9,6 +9,8 @@ import Retailer from './pages/Retailer';
 import Consumer from './pages/Consumer';
 import Test from './components/Test';
 import bg from './assets/bg.jpg'
+import TransactionHistory from './components/Transactions';
+import Footer from './components/Footer';
 
 import "./App.css";
 
@@ -27,6 +29,7 @@ const App = () => {
                     <Route path="/consumer" element={<Consumer />} />
                     <Route path="/test" element={<Test />} />
                 </Routes>
+            <TransactionHistory />
             </div>
         </div>
     );
