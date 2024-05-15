@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useStateContext } from "../../context";
+import { toast } from "react-toastify";
 
 const HarvestItem = ({ closeModal }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,11 +35,14 @@ const HarvestItem = ({ closeModal }) => {
 
     try {
       await harvestCoffee(formValues);
-      setSuccessMessage("Coffee details added successfully");
       actionText();
+      setSuccessMessage("Coffee details added successfully");
+      toast("Coffee details added successfully", { type: "success" });
+
     } catch (error) {
       console.error("Error adding coffee details:", error);
       setErrorMessage("Error adding coffee details");
+      toast("Error adding coffee details", { type: "error" });
     } finally {
       setIsLoading(false);
       closeModal();

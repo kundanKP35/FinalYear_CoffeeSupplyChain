@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useStateContext } from "../context";
 import RetailerList from "../components/RetailerTable";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
+
 
 const Retailer = () => {
   const [newRetailerId, setNewRetailerId] = useState("");
@@ -23,8 +25,10 @@ const Retailer = () => {
     try {
       const result = await addNewRetailer(newRetailerId);
       setAddRetailerResult("Retailer added successfully");
+      toast("Retailer added successfully", { type: "success" });
     } catch (error) {
       console.error("Error adding retailer:", error);
+      toast("Error adding retailer", { type: "error" });
       setError("Error adding retailer");
     } finally {
       setIsLoading(false);

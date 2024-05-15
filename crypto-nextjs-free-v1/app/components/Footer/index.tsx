@@ -80,7 +80,7 @@ const footer = () => {
       {/* All Rights Reserved */}
 
       <div className='py-8 px-4 border-t border-t-lightblue'>
-        <h3 className='text-center text-offwhite'>@2023 - All Rights Reserved by <Link href="https://adminmart.com/" target="_blank"> Adminmart.com</Link></h3>
+        <h3 className='text-center text-offwhite'>@2024 - All Rights Reserved by <Link href="https://adminmart.com/" target="_blank"> Adminmart.com</Link></h3>
       </div>
 
     </div>

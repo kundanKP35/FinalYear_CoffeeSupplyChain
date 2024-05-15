@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useStateContext } from "../context";
 import FarmerList from "../components/FarmerTable";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 const Farmer = () => {
   const [newFarmerId, setNewFarmerId] = useState("");
@@ -23,8 +24,10 @@ const Farmer = () => {
     try {
       const result = await addNewFarmer(newFarmerId);
       setAddFarmerResult("Farmer added successfully");
+      toast("Farmer added successfully", { type: "success" });
     } catch (error) {
       console.error("Error adding farmer:", error);
+      toast("Error adding farmer", { type: "error" });
       setError("Error adding farmer");
     } finally {
       setIsLoading(false);

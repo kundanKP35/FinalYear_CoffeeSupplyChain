@@ -4,11 +4,14 @@ import { useStateContext } from "../context";
 import CoffeeOriginDetails from "../components/CoffeeOriginDetails";
 import CoffeeChainDetails from "../components/CoffeeChainDetails";
 import logo from "../assets/logo.svg";
+import banner from '../assets/banner.jpg'
 
 const Home = () => {
   return (
     <>
+      <div className="relative sm:-8 min-h-screen flex flex-row bg-cover bg-center" style={{ backgroundImage: `url(${banner})` }}>
       <h1 className="text-9xl font-bold mt-96 mb-32 text-white">Ace Coffee Suppliers</h1>
+      </div>
       <div className="flex justify-around text-white ontainer max-w-screen-xl mx-auto py-8">
         <CoffeeOriginDetails />
         <CoffeeChainDetails />
@@ -28,7 +31,7 @@ const Home = () => {
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
           <span className="block text-sm text-gray-500 sm:text-center">
-            © 2023{" "}
+            © 2024{" "}
             <a href="#" className="hover:underline">
               Ace Coffee Suppliers
             </a>

@@ -1,4 +1,5 @@
 import React, { useContext, createContext } from 'react';
+import { toast } from "react-toastify";
 
 import { useAddress, useContract, useMetamask, useContractWrite, Web3Button } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
@@ -19,6 +20,7 @@ export const StateContextProvider = ({ children }) => {
             return coffeeDetail;
         } catch (error) {
             console.log("contract call failure",error) 
+            toast("Error fetching coffee origin detail", { type: "error" });
         }
     } 
 
@@ -29,6 +31,7 @@ export const StateContextProvider = ({ children }) => {
             return coffeeDetail;
         } catch (error) {
             console.log("contract call failure",error) 
+            toast("Error fetching coffee chain detail", { type: "error" });
         }
     } 
 
@@ -41,6 +44,7 @@ export const StateContextProvider = ({ children }) => {
             return result;
         } catch (error) {
             console.log("contract call failure",error) 
+            toast("Error adding farmer", { type: "error" });
         }
     }
 
@@ -58,7 +62,8 @@ export const StateContextProvider = ({ children }) => {
           console.log("contract call success",result)
           return result;
       } catch (error) {
-          console.log("contract call failure",error) 
+          console.log("contract call failure",error)
+          toast("Error adding coffee details", { type: "error" }); 
       }
     }
 
@@ -68,7 +73,8 @@ export const StateContextProvider = ({ children }) => {
           console.log("contract call success",result)
           return result;
       } catch (error) {
-          console.log("contract call failure",error) 
+          console.log("contract call failure",error)
+          toast("Error processing coffee", { type: "error" }) 
       }
     }
 
@@ -79,6 +85,7 @@ export const StateContextProvider = ({ children }) => {
           return result;
       } catch (error) {
           console.log("contract call failure",error) 
+          toast("Error packing coffee", { type: "error" });
       }
     }
 
@@ -88,7 +95,8 @@ export const StateContextProvider = ({ children }) => {
           console.log("contract call success",result)
           return result;
       } catch (error) {
-          console.log("contract call failure",error) 
+          console.log("contract call failure",error)
+          toast("Error listing coffee for sale", { type: "error" }); 
       }
     }
 
@@ -99,7 +107,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success",result)
             return result;
         } catch (error) {
-            console.log("contract call failure",error) 
+            console.log("contract call failure",error)
+            toast("Error adding distributor", { type: "error" }); 
         }
     }
 
@@ -110,6 +119,7 @@ export const StateContextProvider = ({ children }) => {
             return items;
         } catch (error) {
             console.log("contract call failure",error)
+            toast("Error fetching items", { type: "error" });
             return [];
         }
     }
@@ -119,9 +129,11 @@ export const StateContextProvider = ({ children }) => {
           const result = await contract.call('buyItem', [upc], { value: ethers.utils.parseEther(nativeTokenValue) });
           console.log("contract call success", result);
           setSuccessMessage('Item purchased successfully!');
+          toast("Item purchased successfully!", { type: "success" });
           return result;
         } catch (error) {
           console.log("contract call failure", error);
+          toast("Error buying coffee", { type: "error" });
         }
     };
 
@@ -130,9 +142,11 @@ export const StateContextProvider = ({ children }) => {
             const result = await contract.call('shipItem',[upc]);
             console.log("contract call success",result)
             setSuccessMessage('Item shipped successfully!');
+            toast("Item shipped successfully!", { type: "success" });
             return result;
         } catch (error) {
-            console.log("contract call failure",error) 
+            console.log("contract call failure",error)
+            toast("Error shipping coffee", { type: "error" }); 
         }
     }
 
@@ -144,6 +158,7 @@ export const StateContextProvider = ({ children }) => {
             return result;
         } catch (error) {
             console.log("contract call failure",error) 
+            toast("Error adding retailer", { type: "error" });
         }
     }
 
@@ -154,6 +169,7 @@ export const StateContextProvider = ({ children }) => {
             return items;
         } catch (error) {
             console.log("contract call failure",error)
+            toast("Error fetching items", { type: "error" });
             return [];
         }
     }
@@ -163,9 +179,11 @@ export const StateContextProvider = ({ children }) => {
             const result = await contract.call('receiveItem',[upc]);
             console.log("contract call success",result)
             setSuccessMessage('Item received successfully!');
+            toast("Item received successfully!", { type: "success" });
             return result;
         } catch (error) {
-            console.log("contract call failure",error) 
+            console.log("contract call failure",error)
+            toast("Error receiving coffee", { type: "error" }); 
         }
     }
 
@@ -176,7 +194,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success",result)
             return result;
         } catch (error) {
-            console.log("contract call failure",error) 
+            console.log("contract call failure",error)
+            toast("Error adding consumer", { type: "error" }); 
         }
     }
 
@@ -187,6 +206,7 @@ export const StateContextProvider = ({ children }) => {
             return items;
         } catch (error) {
             console.log("contract call failure",error)
+            toast("Error fetching items", { type: "error" });
             return [];
         }
     }
@@ -196,9 +216,11 @@ export const StateContextProvider = ({ children }) => {
             const result = await contract.call('purchaseItem',[upc]);
             console.log("contract call success",result)
             setSuccessMessage('Item purchased successfully!');
+            toast("Item purchased successfully!", { type: "success" });
             return result;
         } catch (error) {
-            console.log("contract call failure",error) 
+            console.log("contract call failure",error)
+            toast("Error purchasing coffee", { type: "error" }); 
         }
     }
 

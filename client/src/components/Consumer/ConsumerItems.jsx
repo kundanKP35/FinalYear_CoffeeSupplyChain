@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useStateContext } from "../../context";
+import { toast } from "react-toastify";
+
 
 const ConsumerItems = ({ closeModal }) => {
   const { getConsumerItems } = useStateContext();
@@ -18,6 +20,7 @@ const ConsumerItems = ({ closeModal }) => {
       }
     } catch (error) {
       console.log("Error fetching items:", error);
+      toast("Error fetching items", { type: "error" });
     }
   };
 
