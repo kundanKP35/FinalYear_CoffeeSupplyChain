@@ -22,7 +22,7 @@ const PackItem = ({ closeModal }) => {
     setErrorMessage("");
 
     try {
-      await packCoffee(upc);
+      await packCoffee(upc, setSuccessMessage);
       setSuccessMessage(`Item with UPC ${upc} packed successfully`);
       toast(`Item with UPC ${upc} packed successfully`, { type: "success" });
     } catch (error) {
@@ -30,6 +30,7 @@ const PackItem = ({ closeModal }) => {
       setErrorMessage("Error packing item");
       toast("Error packing item", { type: "error" });
     } finally {
+      closeModal();
       setIsLoading(false);
     }
   };

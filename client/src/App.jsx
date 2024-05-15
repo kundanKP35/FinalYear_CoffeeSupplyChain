@@ -11,11 +11,14 @@ import Test from "./components/Test";
 import bg from "./assets/bg.jpg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TransactionHistory from './components/Transactions';
+
 
 import "./App.css";
 
 const App = () => {
   return (
+
     <div
       className="relative sm:-8 min-h-screen flex flex-row bg-cover bg-center"
       style={{ backgroundImage: `url(${bg})` }}
@@ -31,6 +34,7 @@ const App = () => {
           <Route path="/consumer" element={<Consumer />} />
           <Route path="/test" element={<Test />} />
         </Routes>
+        <TransactionHistory />
       </div>
       <ToastContainer
         position="bottom-right"

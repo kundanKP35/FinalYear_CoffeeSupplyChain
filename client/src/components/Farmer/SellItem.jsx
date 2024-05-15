@@ -30,7 +30,7 @@ const SellItem = ({ closeModal }) => {
     setErrorMessage("");
 
     try {
-      await sellCoffee(formValues);
+      await sellCoffee(formValues, setSuccessMessage);
       setSuccessMessage("Coffee listed for sale successfully");
       toast("Coffee listed for sale successfully", { type: "success" });
     } catch (error) {
@@ -38,6 +38,7 @@ const SellItem = ({ closeModal }) => {
       toast("Error listing coffee for sale", { type: "error" });
       setErrorMessage("Error listing coffee for sale");
     } finally {
+      closeModal();
       setIsLoading(false);
     }
   };

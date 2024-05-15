@@ -60,9 +60,9 @@ contract SupplyChain is
         string originFarmInformation; // Farmer Information
         string originFarmLatitude; // Farm Latitude
         string originFarmLongitude; // Farm Longitude
-        uint256 productID; // Product ID potentially a combination of upc + sku
-        string productNotes; // Product Notes
-        uint256 productPrice; // Product Price
+        uint256 productID; 
+        string productNotes;
+        uint256 productPrice; 
         State itemState; // Product State as represented in the enum above
         address distributorID; // Metamask-Ethereum address of the Distributor
         address retailerID; // Metamask-Ethereum address of the Retailer

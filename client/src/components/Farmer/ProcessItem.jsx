@@ -22,7 +22,7 @@ const ProcessItem = ({ closeModal }) => {
     setErrorMessage("");
 
     try {
-      await processCoffee(upc);
+      await processCoffee(upc, setSuccessMessage);
       setSuccessMessage(`Item with UPC ${upc} processed successfully`);
       toast(`Item with UPC ${upc} processed successfully`, { type: "success" });
     } catch (error) {
@@ -30,6 +30,7 @@ const ProcessItem = ({ closeModal }) => {
       setErrorMessage("Error processing item");
       toast("Error processing item", { type: "error" });
     } finally {
+      closeModal();
       setIsLoading(false);
     }
   };

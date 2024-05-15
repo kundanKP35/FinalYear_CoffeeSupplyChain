@@ -5,12 +5,19 @@ const PurchaseItem = ({ closeModal }) => {
   const [upc, setUpc] = useState('');
   const [nativeTokenValue, setNativeTokenValue] = useState(0);
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { buyCoffee } = useStateContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await buyCoffee(upc, nativeTokenValue, setSuccessMessage);
+    try {
+      await buyCoffee(upc, nativeTokenValue, setSuccessMessage);
+    } catch (error) {
+      setErrorMessage('Error buying item');
+    } finally {
+      closeModal();
+    }
 
     setUpc('');
     setNativeTokenValue(0);
