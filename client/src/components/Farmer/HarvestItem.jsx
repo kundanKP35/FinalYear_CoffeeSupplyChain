@@ -35,7 +35,7 @@ const HarvestItem = ({ closeModal }) => {
 
     try {
       await harvestCoffee(formValues, setSuccessMessage);
-      actionText();
+      // actionText();
       setSuccessMessage("Coffee details added successfully");
       toast("Coffee details added successfully", { type: "success" });
 
