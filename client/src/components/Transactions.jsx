@@ -2,7 +2,7 @@ import React from 'react';
 
 const getTransactionHistory = () => {
     const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-    return transactions.sort((a, b) => b.timestamp - a.timestamp); // Sort by timestamp, latest first
+    return transactions.sort((a, b) => b.timestamp - a.timestamp); 
 };
 
 const TransactionHistory = () => {
