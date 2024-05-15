@@ -1,7 +1,7 @@
 import React from "react";
 import pic1 from "../assets/pic1.png";
 import pic2 from "../assets/pic2.png";
-import pic3 from "../assets/pic3.png";
+import pic3 from "../assets/pic3.jpg";
 import mentor from "../assets/mentor.jpeg";
 import logo from "../assets/logo2.png";
 import { useNavigate } from "react-router-dom";
@@ -51,10 +51,10 @@ const TeamsPage = () => {
         </p>
         <div className="border-b border-gray-300 mb-6 pb-16">
           <ul className="flex pipelist">
-            <li className=" animate-pulse">Feature 1</li>
-            <li className=" animate-pulse">Feature 2</li>
-            <li className=" animate-pulse">Feature 3</li>
-            <li className="animate-pulse">Feature 4</li>
+            <li className=" animate-pulse">Real time data integration</li>
+            <li className=" animate-pulse">Seamless UI/UX</li>
+            <li className=" animate-pulse">Secure and Immutable blockchain transactions</li>
+            <li className="animate-pulse">Progressive web app</li>
           </ul>
         </div>
         <div>
@@ -68,7 +68,7 @@ const TeamsPage = () => {
               "Feature implementation",
               "Testing",
             ]}
-            image={pic1}
+            image={pic2}
           />
           <TeamMember
             name="Kundan Prasad"
@@ -79,7 +79,7 @@ const TeamsPage = () => {
               "Team coordination",
               "Documentation",
             ]}
-            image={pic2}
+            image={pic1}
           />
           <TeamMember
             name="Chetan Pediredla"

@@ -34,7 +34,7 @@ const App = () => {
           <Route path="/consumer" element={<Consumer />} />
           <Route path="/test" element={<Test />} />
         </Routes>
-        <TransactionHistory />
+        {/* <TransactionHistory /> */}
       </div>
       <ToastContainer
         position="bottom-right"
