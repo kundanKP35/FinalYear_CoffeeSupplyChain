@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../context';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Footer = ({ role }) => {
+  const navigate = useNavigate();
+
   const { addNewFarmer, addNewDistributor, addNewRetailer, addNewConsumer } = useStateContext();
   const [newRoleAddress, setNewRoleAddress] = useState('');
 
@@ -27,6 +33,7 @@ const Footer = ({ role }) => {
       }
     } catch (error) {
       console.error('Error adding new role:', error);
+      toast('Error adding new role', { type: 'error' });
     }
   };
 
@@ -39,7 +46,7 @@ const Footer = ({ role }) => {
       <div className="w-full p-4 md:py-8">
         <div className="flex justify-between max-w-screen-xl mx-auto">
           <div className="sm:items-center sm:justify-between">
-            <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+            <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"  onClick={()=>navigate("/")}>
               <span className="self-center text-2xl font-semibold whitespace-nowrap">Ace Coffee Suppliers</span>
             </div>
             <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
@@ -54,13 +61,13 @@ const Footer = ({ role }) => {
           <div className="sm:items-center sm:justify-end">
             <p>Add a new {role} to the network:</p>
             <form onSubmit={handleFormSubmit} className="flex">
-              <input type="text" value={newRoleAddress} onChange={handleAddressChange} className="border border-gray-300 rounded-l px-4 py-2" placeholder={`Enter new ${role} address`} />
+              <input type="text" value={newRoleAddress} onChange={handleAddressChange} className="border border-gray-300 rounded-l px-4 py-2 text-black" placeholder={`Enter new ${role} address`} />
               <button type="submit" className="bg-blue-500 text-white font-semibold rounded-r px-4 py-2">Add {role}</button>
             </form>
           </div>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        <span className="block text-sm text-gray-500 sm:text-center">© 2023 <a href="#" className="hover:underline">Ace Coffee Suppliers</a>. All Rights Reserved.</span>
+        <span className="block text-sm text-gray-500 sm:text-center">© 2024 <a href="#" className="hover:underline">Ace Coffee Suppliers</a>. All Rights Reserved.</span>
       </div>
     </footer>
   );

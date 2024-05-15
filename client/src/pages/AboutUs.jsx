@@ -1,11 +1,15 @@
 import React from "react";
 import pic1 from "../assets/pic1.png";
 import pic2 from "../assets/pic2.png";
-import pic3 from "../assets/pic3.png";
+import pic3 from "../assets/pic3.jpg";
 import mentor from "../assets/mentor.jpeg";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo2.png";
+import { useNavigate } from "react-router-dom";
+
 
 const TeamMember = ({ name, role, contributions, image }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center mb-8">
       <div className="w-1/12 mr-20">
@@ -47,10 +51,10 @@ const TeamsPage = () => {
         </p>
         <div className="border-b border-gray-300 mb-6 pb-16">
           <ul className="flex pipelist">
-            <li className=" animate-pulse">Feature 1</li>
-            <li className=" animate-pulse">Feature 2</li>
-            <li className=" animate-pulse">Feature 3</li>
-            <li className="animate-pulse">Feature 4</li>
+            <li className=" animate-pulse">Real time data integration</li>
+            <li className=" animate-pulse">Seamless UI/UX</li>
+            <li className=" animate-pulse">Secure and Immutable blockchain transactions</li>
+            <li className="animate-pulse">Progressive web app</li>
           </ul>
         </div>
         <div>
@@ -64,7 +68,7 @@ const TeamsPage = () => {
               "Feature implementation",
               "Testing",
             ]}
-            image={pic1}
+            image={pic2}
           />
           <TeamMember
             name="Kundan Prasad"
@@ -75,7 +79,7 @@ const TeamsPage = () => {
               "Team coordination",
               "Documentation",
             ]}
-            image={pic2}
+            image={pic1}
           />
           <TeamMember
             name="Chetan Pediredla"
@@ -110,10 +114,10 @@ const TeamsPage = () => {
         <div className="w-full  p-4 md:py-8">
           <div className="flex justify-between max-w-screen-xl mx-auto">
             <div className=" sm:items-center sm:justify-between">
-              <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+              <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"  onClick={()=>navigate("/")}>
                 {/* <img src={logo} className="h-8" alt="Flowbite Logo" /> */}
-                <img src={logo} alt="Logo" className="w-16 h-16" />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap">
+                <img src={logo} alt="Logo" className="w-40 h-16" onClick={()=>navigate("/")} />
+                <span className="self-center text-2xl font-semibold whitespace-nowrap" onClick={()=>navigate("/")}>
                   Ace Coffee Suppliers
                 </span>
               </div>
@@ -121,7 +125,7 @@ const TeamsPage = () => {
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
           <span className="block text-sm text-gray-500 sm:text-center">
-            © 2023{" "}
+            © 2024{" "}
             <a href="#" className="hover:underline">
               Ace Coffee Suppliers
             </a>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useStateContext } from "../context";
 import ConsumerList from "../components/ConsumerTable";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
+
 
 const Consumer = () => {
   const [newConsumerId, setNewConsumerId] = useState("");
@@ -23,9 +25,11 @@ const Consumer = () => {
     try {
       const result = await addNewConsumer(newConsumerId);
       setAddConsumerResult("Consumer added successfully");
+      toast("Consumer added successfully", { type: "success" });
     } catch (error) {
       console.error("Error adding consumer:", error);
       setError("Error adding consumer");
+      toast("Error adding consumer", { type: "error" });
     } finally {
       setIsLoading(false);
     }

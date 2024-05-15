@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import { useStateContext } from "../context";
 import logo2 from '../assets/logo2.png';
-
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const Navbar = () => {
       await connect();
     } catch (error) {
       console.log("Error connecting wallet:", error);
+      toast("Error connecting wallet", { type: "error" })
     }
   };
 
@@ -21,8 +22,8 @@ const Navbar = () => {
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+            <div className="" onClick={()=>navigate("/")}>
 
-            <div className="" >
             <img
               src={logo2}
               alt="Logo"

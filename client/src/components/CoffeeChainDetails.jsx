@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../context';
 import { ethers } from 'ethers';
+import { toast } from "react-toastify";
+
 
 const CoffeeChainDetails = () => {
   const [upc, setUpc] = useState('');
@@ -21,6 +23,7 @@ const CoffeeChainDetails = () => {
       setCoffeeDetails(result);
     } catch (error) {
       console.error('Error fetching coffee details:', error);
+      toast('Error fetching coffee details', { type: 'error' });
     } finally {
       setIsLoading(false);
     }

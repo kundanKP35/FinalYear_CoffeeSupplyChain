@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useStateContext } from "../../context";
+import { toast } from "react-toastify";
+
 
 const PackItem = ({ closeModal }) => {
   const [upc, setUpc] = useState("");
@@ -21,9 +23,12 @@ const PackItem = ({ closeModal }) => {
 
     try {
       await packCoffee(upc, setSuccessMessage);
+      setSuccessMessage(`Item with UPC ${upc} packed successfully`);
+      toast(`Item with UPC ${upc} packed successfully`, { type: "success" });
     } catch (error) {
       console.error("Error packing item:", error);
       setErrorMessage("Error packing item");
+      toast("Error packing item", { type: "error" });
     } finally {
       closeModal();
       setIsLoading(false);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useStateContext } from "../context";
 import DistributorList from "../components/DistributorTable";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 const Distributor = () => {
   const [newDistributorId, setNewDistributorId] = useState("");
@@ -23,8 +24,10 @@ const Distributor = () => {
     try {
       await addNewDistributor(newDistributorId);
       setAddDistributorResult("Distributor added successfully");
+      toast("Distributor added successfully", { type: "success" });
     } catch (error) {
       console.error("Error adding distributor:", error);
+      toast("Error adding distributor", { type: "error" });
       setError("Error adding distributor");
     } finally {
       setIsLoading(false);

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useStateContext } from "../../context";
+import { toast } from "react-toastify";
+
 
 const SellItem = ({ closeModal }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,8 +31,11 @@ const SellItem = ({ closeModal }) => {
 
     try {
       await sellCoffee(formValues, setSuccessMessage);
+      setSuccessMessage("Coffee listed for sale successfully");
+      toast("Coffee listed for sale successfully", { type: "success" });
     } catch (error) {
       console.error("Error listing coffee for sale:", error);
+      toast("Error listing coffee for sale", { type: "error" });
       setErrorMessage("Error listing coffee for sale");
     } finally {
       closeModal();

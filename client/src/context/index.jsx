@@ -1,4 +1,6 @@
 import React, { useContext, createContext, useEffect } from 'react';
+import { toast } from "react-toastify";
+
 
 import { useAddress, useContract, useMetamask, useContractWrite, Web3Button } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
@@ -45,7 +47,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", coffeeDetail)
             return coffeeDetail;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error) 
+            toast("Error fetching coffee origin detail", { type: "error" });
         }
     }
 
@@ -55,7 +58,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", coffeeDetail)
             return coffeeDetail;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error) 
+            toast("Error fetching coffee chain detail", { type: "error" });
         }
     }
 
@@ -72,48 +76,56 @@ export const StateContextProvider = ({ children }) => {
     }
 
     const harvestCoffee = async (form, setSuccessMessage) => {
-        try {
-            const result = await contract.call('harvestItem', [
-                form.upc,
-                form.originFarmerID,
-                form.originFarmName,
-                form.originFarmInformation,
-                form.originFarmLatitude,
-                form.originFarmLongitude,
-                form.productNotes
+        try { 
+            const result = await contract.call('harvestItem',[
+              form.upc,
+              form.originFarmerID,
+              form.originFarmName,
+              form.originFarmInformation,
+              form.originFarmLatitude,
+              form.originFarmLongitude,
+              form.productNotes
             ]);
-            console.log("contract call success", result)
+            console.log("contract call success",result)
             setSuccessMessage("Coffee details added successfully");
             handleSaveTransaction(result);
+
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error adding coffee details", { type: "error" }); 
         }
-    }
-
+      }
+      
     const processCoffee = async (upc, setSuccessMessage) => {
         try {
-            const result = await contract.call('processItem', [upc]);
-            console.log("contract call success", result)
+            const result = await contract.call('processItem',[upc]);
+            console.log("contract call success",result)
             setSuccessMessage(`Item with UPC ${upc} processed successfully`);
             handleSaveTransaction(result);
+            
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error processing coffee", { type: "error" }) 
         }
-    }
+      }
+
 
     const packCoffee = async (upc, setSuccessMessage) => {
-        try {
-            const result = await contract.call('packItem', [upc]);
-            console.log("contract call success", result)
-            setSuccessMessage(`Item with UPC ${upc} packed successfully`);
-            handleSaveTransaction(result);
-            return result;
-        } catch (error) {
-            console.log("contract call failure", error)
-        }
+      try {
+          const result = await contract.call('packItem',[upc]);
+          console.log("contract call success",result)
+          setSuccessMessage(`Item with UPC ${upc} packed successfully`);
+         handleSaveTransaction(result);
+          return result;
+      } catch (error) {
+          console.log("contract call failure",error) 
+          toast("Error packing coffee", { type: "error" });
+      }
     }
+
+
 
     const sellCoffee = async (form, setSuccessMessage) => {
         try {
@@ -124,6 +136,7 @@ export const StateContextProvider = ({ children }) => {
             return result;
         } catch (error) {
             console.log("contract call failure", error)
+            toast("Error listing coffee for sale", { type: "error" }); 
         }
     }
 
@@ -134,7 +147,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", result)
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error adding distributor", { type: "error" }); 
         }
     }
 
@@ -144,32 +158,37 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", items);
             return items;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error fetching items", { type: "error" });
             return [];
         }
     }
 
     const buyCoffee = async (upc, nativeTokenValue, setSuccessMessage) => {
         try {
-            const result = await contract.call('buyItem', [upc], { value: ethers.utils.parseEther(nativeTokenValue) });
-            console.log("contract call success", result);
-            setSuccessMessage('Item purchased successfully!');
-            handleSaveTransaction(result);
-            return result;
+        const result = await contract.call('buyItem', [upc], { value: ethers.utils.parseEther(nativeTokenValue) });
+          handleSaveTransaction(result);
+          console.log("contract call success", result);
+          setSuccessMessage('Item purchased successfully!');
+          toast("Item purchased successfully!", { type: "success" });
+          return result;
         } catch (error) {
-            console.log("contract call failure", error);
+          console.log("contract call failure", error);
+          toast("Error buying coffee", { type: "error" });
         }
     };
 
     const shipCoffee = async (upc, setSuccessMessage) => {
         try {
             const result = await contract.call('shipItem', [upc]);
+            handleSaveTransaction(result);
             console.log("contract call success", result)
             setSuccessMessage('Item shipped successfully!');
-            handleSaveTransaction(result);
+            toast("Item shipped successfully!", { type: "success" });
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error shipping coffee", { type: "error" }); 
         }
     }
 
@@ -180,7 +199,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", result)
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error) 
+            toast("Error adding retailer", { type: "error" });
         }
     }
 
@@ -190,7 +210,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", items);
             return items;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error fetching items", { type: "error" });
             return [];
         }
     }
@@ -198,12 +219,14 @@ export const StateContextProvider = ({ children }) => {
     const receiveCoffee = async (upc, setSuccessMessage) => {
         try {
             const result = await contract.call('receiveItem', [upc]);
+            handleSaveTransaction(result);
             console.log("contract call success", result)
             setSuccessMessage('Item received successfully!');
-            handleSaveTransaction(result);
+            toast("Item received successfully!", { type: "success" });
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error receiving coffee", { type: "error" }); 
         }
     }
 
@@ -214,7 +237,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", result)
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error adding consumer", { type: "error" }); 
         }
     }
 
@@ -224,7 +248,8 @@ export const StateContextProvider = ({ children }) => {
             console.log("contract call success", items);
             return items;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error fetching items", { type: "error" });
             return [];
         }
     }
@@ -232,12 +257,14 @@ export const StateContextProvider = ({ children }) => {
     const purchaseCoffee = async (upc, setSuccessMessage) => {
         try {
             const result = await contract.call('purchaseItem', [upc]);
+            handleSaveTransaction(result);
             console.log("contract call success", result)
             setSuccessMessage('Item purchased successfully!');
-            handleSaveTransaction(result);
+            toast("Item purchased successfully!", { type: "success" });
             return result;
         } catch (error) {
-            console.log("contract call failure", error)
+            console.log("contract call failure",error)
+            toast("Error purchasing coffee", { type: "error" }); 
         }
     }
 

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useStateContext } from "../../context";
+import { toast } from "react-toastify";
+
 
 const ProcessItem = ({ closeModal }) => {
   const [upc, setUpc] = useState("");
@@ -21,9 +23,12 @@ const ProcessItem = ({ closeModal }) => {
 
     try {
       await processCoffee(upc, setSuccessMessage);
+      setSuccessMessage(`Item with UPC ${upc} processed successfully`);
+      toast(`Item with UPC ${upc} processed successfully`, { type: "success" });
     } catch (error) {
       console.error("Error processing item:", error);
       setErrorMessage("Error processing item");
+      toast("Error processing item", { type: "error" });
     } finally {
       closeModal();
       setIsLoading(false);
