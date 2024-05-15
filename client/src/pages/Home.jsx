@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../context";
 import CoffeeOriginDetails from "../components/CoffeeOriginDetails";
 import CoffeeChainDetails from "../components/CoffeeChainDetails";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo2.png";
 import banner from '../assets/banner.jpg'
 
+
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="relative sm:-8 min-h-screen flex flex-row bg-cover bg-center" style={{ backgroundImage: `url(${banner})` }}>
@@ -20,9 +23,9 @@ const Home = () => {
         <div className="w-full  p-4 md:py-8">
           <div className="flex justify-between max-w-screen-xl mx-auto">
             <div className=" sm:items-center sm:justify-between">
-              <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+              <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"  onClick={()=>navigate("/")}>
                 {/* <img src={logo} className="h-8" alt="Flowbite Logo" /> */}
-                <img src={logo} alt="Logo" className="w-16 h-16" />
+                <img src={logo} alt="Logo" className="w-40 h-16" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap">
                   Ace Coffee Suppliers
                 </span>

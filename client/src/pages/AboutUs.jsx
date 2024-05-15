@@ -3,9 +3,13 @@ import pic1 from "../assets/pic1.png";
 import pic2 from "../assets/pic2.png";
 import pic3 from "../assets/pic3.png";
 import mentor from "../assets/mentor.jpeg";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo2.png";
+import { useNavigate } from "react-router-dom";
+
 
 const TeamMember = ({ name, role, contributions, image }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center mb-8">
       <div className="w-1/12 mr-20">
@@ -110,10 +114,10 @@ const TeamsPage = () => {
         <div className="w-full  p-4 md:py-8">
           <div className="flex justify-between max-w-screen-xl mx-auto">
             <div className=" sm:items-center sm:justify-between">
-              <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+              <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"  onClick={()=>navigate("/")}>
                 {/* <img src={logo} className="h-8" alt="Flowbite Logo" /> */}
-                <img src={logo} alt="Logo" className="w-16 h-16" />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap">
+                <img src={logo} alt="Logo" className="w-40 h-16" onClick={()=>navigate("/")} />
+                <span className="self-center text-2xl font-semibold whitespace-nowrap" onClick={()=>navigate("/")}>
                   Ace Coffee Suppliers
                 </span>
               </div>

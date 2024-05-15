@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../context';
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Footer = ({ role }) => {
+  const navigate = useNavigate();
+
   const { addNewFarmer, addNewDistributor, addNewRetailer, addNewConsumer } = useStateContext();
   const [newRoleAddress, setNewRoleAddress] = useState('');
 
@@ -42,7 +46,7 @@ const Footer = ({ role }) => {
       <div className="w-full p-4 md:py-8">
         <div className="flex justify-between max-w-screen-xl mx-auto">
           <div className="sm:items-center sm:justify-between">
-            <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+            <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"  onClick={()=>navigate("/")}>
               <span className="self-center text-2xl font-semibold whitespace-nowrap">Ace Coffee Suppliers</span>
             </div>
             <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
